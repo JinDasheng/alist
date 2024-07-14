@@ -9,4 +9,8 @@ exec su-exec ${PUID}:${PGID} nohup aria2c \
   --conf-path=/root/.aria2/aria2.conf \
   >/dev/null 2>&1 &
 
-exec su-exec ${PUID}:${PGID} ./alist server --no-prefix
+if [ "$1" = "version" ]; then
+  ./alist version
+else
+  exec su-exec ${PUID}:${PGID} ./alist server --no-prefix
+fi

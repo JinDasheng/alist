@@ -1,15 +1,25 @@
-version: '3.3'
+---
 services:
   alist:
-    restart: always
+    container_name: alist
+    image: 'sync/alist:latest'
     volumes:
-      - '/etc/alist:/opt/alist/data'
-    ports:
-      - '5244:5244'
+      - '../data/alist/data:/opt/alist/data'
+      # - ./aria2.conf:/root/.aria2/aria2.conf
+    # ports:
+    #   - '5244:5244'
+    #   - '6800:6800'
     environment:
-      - PUID=0
-      - PGID=0
+      - PUID=1000
+      - PGID=996
       - UMASK=022
       - TZ=UTC
-    container_name: alist
-    image: 'xhofe/alist-aria2:latest'
+    restart: unless-stopped
+    networks:
+      im-net:
+        ipv4_address: 10.1.1.6
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+networks:
+  im-net:
+    external: true

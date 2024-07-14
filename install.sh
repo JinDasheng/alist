@@ -1,4 +1,4 @@
-apk add --no-cache aria2 curl
+apk add --no-cache aria2 curl ffmpeg
 
 mkdir -p /root/.aria2
 cd /root/.aria2
