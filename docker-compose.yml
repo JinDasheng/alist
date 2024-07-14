@@ -2,18 +2,23 @@
 services:
   alist:
     container_name: alist
-    image: 'sync/alist:latest'
+    image: 'sync/alist:3'
     volumes:
-      - '../data/alist/data:/opt/alist/data'
-      # - ./aria2.conf:/root/.aria2/aria2.conf
-    # ports:
-    #   - '5244:5244'
-    #   - '6800:6800'
+      - '../data/im-alist/data:/opt/alist/data'
+      - ./aria2.conf:/root/.aria2/aria2.conf
+      - /home/im/Downloads:/home/im/Downloads
+    ports:
+      #- '5244:5244'
+      - '6800:6800'
     environment:
       - PUID=1000
-      - PGID=996
+      - PGID=960
       - UMASK=022
-      - TZ=UTC
+      - TZ=Asia/Shanghai
+    logging:
+      options:
+        max-size: "100m"
+        max-file: "10"
     restart: unless-stopped
     networks:
       im-net:
