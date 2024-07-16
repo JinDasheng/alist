@@ -4,6 +4,7 @@ VOLUME /opt/alist/data/
 WORKDIR /opt/alist/
 COPY entrypoint.sh /entrypoint.sh
 COPY install.sh /install.sh
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
 RUN chmod +x /entrypoint.sh /install.sh; \
   /install.sh
 
