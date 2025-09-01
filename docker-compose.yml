@@ -2,7 +2,7 @@
 services:
   alist:
     container_name: alist
-    image: 'sync/alist:3'
+    image: 'sync/alist:3.37'
     volumes:
       - '../data/im-alist/data:/opt/alist/data'
       - ./aria2.conf:/root/.aria2/aria2.conf
